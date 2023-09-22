@@ -1,4 +1,4 @@
-namespace sismActual.Models
+namespace sism.Models
 {
     public class ErrorViewModel
     {

@@ -1,8 +1,14 @@
+using Pomelo.EntityFrameworkCore.MySql;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using sism.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddDbContext<CermetpesajeContext>(options => options.UseMySql(builder.Configuration.GetConnectionString("conexion"), Microsoft.EntityFrameworkCore.ServerVersion.Parse("5.6.22 - mysql")));
+builder.Services.AddDbContext<ParshallContext>(options => options.UseMySql(builder.Configuration.GetConnectionString("conexionParshall"), Microsoft.EntityFrameworkCore.ServerVersion.Parse("5.6.22 - mysql")));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

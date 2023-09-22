@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using sismActual.Models;
+using sism.Models;
 using System.Diagnostics;
 
-namespace sismActual.Controllers
+namespace sism.Controllers
 {
     public class HomeController : Controller
     {

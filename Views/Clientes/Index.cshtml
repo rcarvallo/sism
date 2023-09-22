@@ -1,0 +1,140 @@
+﻿@model IEnumerable<sism.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Clientes";
+}
+
+
+<!-- Content Wrapper. Contains page content -->
+ <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>CLIENTES</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+              <li class="breadcrumb-item active">Clientes</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+     <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+            </div>
+            <!-- /.card -->
+
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Listado</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+            
+<table  id="clientes" class="table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Rut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Razonsocial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClienteProveedor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoCliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Giro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Direccionfactura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comuna)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ciudad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Region)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Razonsocial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClienteProveedor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Giro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccionfactura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comuna)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ciudad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Region)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+             <button asp-action="Details" asp-route-id="@item.Id" type="button" class="btn btn-info">Detalles</button>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+
+</div>
