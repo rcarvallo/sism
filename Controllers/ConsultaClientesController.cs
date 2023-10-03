@@ -28,14 +28,15 @@ namespace sism.Controllers
         }
 
         // GET: ConsultaClientes
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
 
             var consulta = (from p in _context.Consultaclientes
                             where p.FiltroSistema == "TRANSFERENCIA"
                             where p.Estado == 1
+                            orderby p.PesPermanencia descending
                             select p).Take(500);
-                            
+
 
             return View(consulta);
         }

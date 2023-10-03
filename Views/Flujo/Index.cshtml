@@ -1,7 +1,7 @@
-﻿@model IEnumerable<sism.Models.Dqo>
+﻿@model IEnumerable<sism.Models.Flujo>
 
 @{
-    ViewData["Title"] = "DQO";
+    ViewData["Title"] = "Flujo";
 }
 
 <!-- Contenido de la Pagina -->
@@ -11,12 +11,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>DQO</h1>
+                    <h1>FLUJO</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                        <li class="breadcrumb-item active">DQO</li>
+                        <li class="breadcrumb-item active">Flujo</li>
                     </ol>
                 </div>
             </div>
@@ -38,7 +38,7 @@
                         </div>
 
                         <div class="card-body">
-                            <table id="dqo" class="table-bordered table-striped" width="100%">
+                            <table id="flujo" class="table-bordered table-striped" width="100%">
                                 <thead>
                                     <tr>
                                         <th>
@@ -47,6 +47,7 @@
                                         <th>
                                             @Html.DisplayNameFor(model => model.Valor)
                                         </th>
+                                       
                                     </tr>
                                 </thead>
                                 <tbody>

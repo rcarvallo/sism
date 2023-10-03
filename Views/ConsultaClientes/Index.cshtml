@@ -42,13 +42,7 @@
                                 <thead>
                                     <tr>
                                         <th>
-                                            @Html.DisplayNameFor(model => model.PesNum)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.PesHora)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.PesFecha)
+                                            @Html.DisplayNameFor(model => model.HoraEntrada)
                                         </th>
                                         <th>
                                             @Html.DisplayNameFor(model => model.CamPatente)
@@ -62,7 +56,7 @@
                                         <th>
                                             @Html.DisplayNameFor(model => model.PesTon)
                                         </th>
-                                        <th></th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -70,13 +64,7 @@
                                     {
                                         <tr>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.PesNum)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.PesHora)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.PesFecha)
+                                                @Html.DisplayFor(modelItem => item.HoraEntrada)
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.CamPatente)

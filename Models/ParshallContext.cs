@@ -39,11 +39,7 @@ public partial class ParshallContext : DbContext
 
             entity.ToTable("dqo", tb => tb.HasComment("mg/l"));
 
-            entity.Property(e => e.Hora)
-                .ValueGeneratedOnAddOrUpdate()
-                .HasDefaultValueSql("CURRENT_TIMESTAMP")
-                .HasColumnType("timestamp")
-                .HasColumnName("hora");
+            
             entity.Property(e => e.Valor).HasColumnName("valor");
         });
 
@@ -53,12 +49,8 @@ public partial class ParshallContext : DbContext
 
             entity.ToTable("flujo", tb => tb.HasComment("CuFt/s"));
 
-            entity.Property(e => e.Hora)
-                .ValueGeneratedOnAddOrUpdate()
-                .HasDefaultValueSql("CURRENT_TIMESTAMP")
-                .HasColumnType("timestamp")
-                .HasColumnName("hora");
             entity.Property(e => e.Valor).HasColumnName("valor");
+
         });
 
         OnModelCreatingPartial(modelBuilder);

@@ -8,8 +8,8 @@ namespace sism.Models;
 /// </summary>
 public partial class Dqo
 {
-    public DateTime Hora { get; set; }
+    public DateTime? Hora { get; set; }
 
-    public float Valor { get; set; }
+    public float? Valor { get; set; }
 
 }
