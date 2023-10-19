@@ -1,0 +1,232 @@
+﻿@model IEnumerable<sism.Models.AverageResult>
+    <!-- Update with the correct namespace -->
+    @{
+        ViewData["Title"] = "ParshallDiario";
+    }
+
+    <!-- Contenido de la Pagina -->
+    <div class="content-wrapper">
+        <!-- Contenido del Encabezado (Pagina del Encabezado) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Resumen</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                            <li class="breadcrumb-item active">Resumen Diario</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contenido Principal -->
+        <section class="content">
+        <div class="row mt-2">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-header">Graficos Resumen Dqo</div>
+                    <div class="card-body">
+                        <canvas id="chartDqo" class="chart tab-pane active" style="position: relative; height:300px;"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-header">Graficos Resumen Flujo</div>
+                    <div class="card-body">
+                        <canvas id="chartFlujo" class="chart tab-pane active" style="position: relative; height:300px;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <!-- Other card content here -->
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Listado</h3>
+                            </div>
+
+                            <div class="card-body">
+                                <table id="parshall" class="table-bordered table-striped" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Dia
+                                            </th>
+                                            <th>
+                                                PromedioFlujo
+                                            </th>
+                                            <th>
+                                                PromedioDQO
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>
+                                                @item.Dia.ToString("dd-MM-yyyy")
+                                                </td>
+                                                <td>
+                                                @item.PromedioFlujo.ToString("F3")
+                                                </td>
+                                                    <td>
+                                                @item.PromedioDQO.ToString("F3")
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /.contenido -->
+    </div>
+
+@section Scripts{
+    <script>
+        function resumenDqo() {
+            fetch("../Dqo/resumenDqo")
+                .then((response) => {
+                    return response.ok ? response.json() : Promise.reject(response);
+                })
+                .then((dataJson) => {
+                    console.log(dataJson)
+
+
+                    const labels = dataJson.map((item) => { return item.hora})
+                    const values = dataJson.map((item) => { return item.valor})
+                    
+
+                    console.log(labels)
+                    console.log(values)
+
+                    const data = {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Valor',
+                            data: values,
+                            fill: false,
+                            borderColor: 'rgb(13, 88, 13)',
+                            tension: 0.1
+                        }]
+                    };
+
+                    const config = {
+                        type: 'line',
+                        data: data,
+                        options: {
+                            scales: {
+                                xAxes: [{
+                                    type: 'time',
+                                    time: {
+                                        unit: 'day',
+                                        displayFormats: {
+                                            day: 'DD/MM/YYYY'
+                                        }
+                                    },
+        
+                                     ticks: {
+                                        fontSize: 14
+                                    }
+                                }],
+
+                                yAxes: [{
+                                    ticks: {
+                                        fontSize: 15
+                                    }
+                                }]
+                            }
+                        }
+                    };
+
+                    const canvasLinea = document.getElementById("chartDqo");
+                    const graficoLinea = new Chart(canvasLinea, config)
+
+                }).catch((error) => {
+                    console.log("error")
+                })
+        }
+
+        $(document).ready(() => {
+            resumenDqo()
+        })
+
+        function resumenFlujo() {
+            fetch("../Flujo/resumenFlujo")
+                .then((response) => {
+                    return response.ok ? response.json() : Promise.reject(response);
+                })
+                .then((dataJson) => {
+                    console.log(dataJson)
+
+                    const labels = dataJson.map((item) => { return item.hora })
+                    const values = dataJson.map((item) => { return item.valor })
+
+                    console.log(labels)
+                    console.log(values)
+
+                    const data = {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Valor',
+                            data: values,
+                            fill: false,
+                            borderColor: 'rgb(88, 13, 77)'
+                        }]
+                    };
+
+                    const config = {
+                        type: 'line',
+                        data: data,
+                        options: {
+                            scales: {
+                                xAxes: [{
+                                    type: 'time',
+                                    time: {
+                                        unit: 'day',
+                                        displayFormats: {
+                                            day: 'DD/MM/YYYY'
+                                        }
+                                    },
+                                    ticks: {
+                                        fontSize: 14
+                                    }
+                                }],
+
+                                yAxes: [{
+                                    ticks: {
+                                        fontSize: 15
+                                    }
+                                }]
+                            }
+                        }
+                    };
+
+                    const canvasLinea2 = document.getElementById("chartFlujo");
+                    const graficoLinea2 = new Chart(canvasLinea2, config)
+
+                }).catch((error) => {
+                    console.log("error")
+                })
+        }
+
+        $(document).ready(() => {
+            resumenFlujo()
+        })
+
+    </script>
+}

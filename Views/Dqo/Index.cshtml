@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<sism.Models.Dqo>
-
 @{
     ViewData["Title"] = "DQO";
 }
@@ -11,7 +10,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>DQO</h1>
+                    <h1>DQO(mg/l)</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -25,6 +24,16 @@
 
     <!-- Contenido Principal -->
     <section class="content">
+        <div class="row mt-2">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">Resumen DQO</div>
+                    <div class="card-body">
+                        <canvas id="chartDqo" style="max-height:250px"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
@@ -79,4 +88,77 @@
     <!-- /.contenido -->
 
 </div>
+
+@section Scripts{
+    <script>
+        function resumenDqo(){
+            fetch("../Dqo/resumenDqohora")
+                .then((response) => {
+                    return response.ok ? response.json() : Promise.reject(response);
+                })
+                .then((dataJson) => {
+                    console.log(dataJson)
+
+                    const labels = dataJson.map((item) => {return item.hora})
+                    const values = dataJson.map((item) => { return item.valor})
+
+                    console.log(labels)
+                    console.log(values)
+
+                    const data = {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Valor',
+                            data: values,
+                            fill: false,
+                            borderColor: 'rgb(163, 55, 68)',
+                            tension: 0.1
+                        }]
+                    };
+
+                    const config = {
+                        type: 'line',
+                        data: data,     
+                        options: {
+                            scales: {
+                                xAxes: [{
+                                    type: 'time',
+                                    time: {
+                                        unit: 'second',
+                                        displayFormats: {
+                                            second: 'MM/D h:MM:SS'
+                                        }
+                                    },
+
+                                    ticks: {
+                                        fontSize: 14
+                                    }
+                                }],
+
+                                 yAxes: [{
+                                    ticks: {
+                                        fontSize: 15
+                                    }
+                                }]
+                            }
+                        }
+                    };
+
+                    const canvasLinea = document.getElementById("chartDqo");
+                    const graficoLinea = new Chart(canvasLinea, config)
+
+                }).catch((error) => {
+                    console.log("error")
+                })
+        }
+
+        $(document).ready(() => {
+            resumenDqo()
+        })
+    
+    </script>
+}
+
+
+
 

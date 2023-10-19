@@ -8,7 +8,7 @@ namespace sism.Models;
 /// </summary>
 public partial class Flujo
 {
-    public DateTime Hora { get; set; }
+    public DateTime? Hora { get; set; }
 
     public float Valor { get; set; }
 }

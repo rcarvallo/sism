@@ -19,48 +19,27 @@
       </div>
 
       <!-- Sidebar Menu -->
-      <nav class="mt-6">
+      <nav class="mt-10">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <a href="../Home/Index" class="nav-link active">
-              <i class="nav-icon fas fa-home"></i>
-              <p>
-                 INICIO
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-          </li>
-          <li class="nav-header">ETPS</li>
-          <li class="nav-item">
-            <a href="../ConsultaClientes/Index" class="nav-link">
-              <i class="nav-icon fas fa-truck-moving"></i>
-              <p>
-                Permanencia
-              </p>
-            </a>
-          </li>
-            <li class="nav-header">RSSM</li>
-            <li class="nav-item">
-                <a href="../Dqo/Index" class="nav-link">
-                    <i class="nav-icon fa fa-line-chart"></i>
-                    <p>
-                        Dqo
-                    </p>
-                </a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-building"></i>  ETPS</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="../ConsultaClientes/Index">Permanencia</a>
+                </div>
             </li>
-            <li class="nav-item">
-                <a href="../Flujo/Index" class="nav-link">
-                    <i class="nav-icon fa fa-line-chart"></i>
-                    <p>
-                        Flujo
-                    </p>
-                </a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-truck"></i>  RSSM</a>
+                   <div class="dropdown-menu">
+                    <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="../Dqo/Index">Dqo</a>
+                        <a class="dropdown-item" href="../Flujo/Index">Flujo</a>
+                        <a class="dropdown-item" href="../ParshallDiario/Index">ParshallDiario</a>
+                    </div>      
             </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
-    </div>
     <!-- /.sidebar -->
   </aside>
