@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using NuGet.Protocol.Core.Types;
 using Pomelo.EntityFrameworkCore.MySql.Query.Internal;
 using sism.Models;
 
@@ -25,6 +26,23 @@ namespace sism.Controllers
         public ConsultaClientesController(CermetpesajeContext context)
         {
             _context = context;
+        }
+
+        public async Task<IEnumerable<Consultacliente>> resumenClientes()
+        {
+
+            var fechaInicio = DateTime.Now.Date.AddDays(-6);
+            var clientes = await _context.Consultaclientes
+              .Where(dqo => dqo.FechaYhoraEntrada.Value.Date >= fechaInicio.Date)
+                .GroupBy(dqo => dqo.FechaYhoraEntrada.Value.Date)
+               .Select(d => new Consultacliente
+               {
+                   FechaYhoraEntrada = d.Key,
+                   PesTon = d.Sum(d=> d.PesTon)
+
+               }).ToListAsync();
+
+            return clientes;
         }
 
         // GET: ConsultaClientes

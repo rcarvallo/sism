@@ -8,8 +8,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<sismActual.Services.AveragePerDayService>();
 
 builder.Services.AddDbContext<CermetpesajeContext>(options =>
-    options.UseMySql(builder.Configuration.GetConnectionString("conexion"), ServerVersion.Parse("5.6.22 - mysql")))
-        .AddDbContext<ParshallContext>(options =>
+    options.UseMySql(builder.Configuration.GetConnectionString("conexion"), ServerVersion.Parse("5.6.22 - mysql")));
+        builder.Services.AddDbContext<ParshallContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("conexionParshall"), ServerVersion.Parse("5.6.22 - mysql")));
 
 

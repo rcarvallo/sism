@@ -82,6 +82,7 @@ public partial class Consultacliente
 
     public int? PesLavado { get; set; }
 
+    [DisplayName("Fecha y Hora")]
     public DateTime? FechaYhoraEntrada { get; set; }
 
     public DateTime? FechaYhoraSalida { get; set; }
